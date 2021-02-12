@@ -5,33 +5,53 @@
 #include <iostream>
 #include <stack>
 #include <vector>
+#include <cstring>
 using namespace std;
 
 int evalRPN(vector<string>& tokens) {
   stack<int> s;
   int tempNum = 0;
   for (size_t i = 0; i != tokens.size(); ++i){
-    if (tokens[i] != '+' && tokens[i] != '-' && tokens[i] != '*' && tokens[i] != '/'){
-      s.push((int)tokens[i]);
+    if (tokens[i] != "+" && tokens[i] != "-" && tokens[i] != "*" && tokens[i] != "/"){
+      s.push(stoi(tokens[i]));
       continue;
     }
     // 判断运算符号
-    switch(tokens[i]){
-      case '+':
-        tempNum = tokens[i-1] + tokens[i-2];
-        break;
-      case '-':
-        tempNum = tokens[i-1] - tokens[i-2];
-        break;
-      case '*':
-        tempNum = tokens[i-1] * tokens[i-2];
-        break;
-      case '/':
-        tempNum = tokens[i-1] / tokens[i-2];
-        break;
-      default:
-        break;
+    if (tokens[i] == "+"){
+      int first = s.top();
+      s.pop();
+      int second = s.top();
+      s.pop();
+      s.push(second + first);
     }
-    
+    if (tokens[i] == "-"){
+      int first = s.top();
+      s.pop();
+      int second = s.top();
+      s.pop();
+      s.push(second - first);
+    }
+    if (tokens[i] == "*"){
+      int first = s.top();
+      s.pop();
+      int second = s.top();
+      s.pop();
+      s.push(second * first);
+    }
+    if (tokens[i] == "/"){
+      int first = s.top();
+      s.pop();
+      int second = s.top();
+      s.pop();
+      s.push(second / first);
+    }
+
   }
+  return s.top();
+}
+
+int main(){
+  vector<string> num = {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
+  int i = evalRPN(num);
+  cout << i << endl;
 }
