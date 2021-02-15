@@ -1,6 +1,8 @@
 {
   "python.pythonPath": "C:\\Users\\yangf\\AppData\\Local\\Programs\\Python\\Python39\\python.exe",
   "files.associations": {
-    "deque": "cpp"
+    "deque": "cpp",
+    "iostream": "cpp",
+    "vector": "cpp"
   }
 }
