@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 
+// 枚举所有的大于2的字符串，然后依次判断是否是回文
 string longestPalindrome(string s){
   
 }
