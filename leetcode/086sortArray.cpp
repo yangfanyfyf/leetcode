@@ -24,3 +24,22 @@ public:
       return nums;
     }
 };
+
+
+// 插入排序
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+      int len = nums.size();
+      for (int i = 1; i != len; ++i){
+        int temp = nums[i];
+        int j = i;
+        while (j > 0 && nums[j - 1] > temp) {
+          nums[j] = nums[j - 1];
+          --j;
+        }
+        nums[j] = temp;
+      }
+      return nums;
+    }
+};
