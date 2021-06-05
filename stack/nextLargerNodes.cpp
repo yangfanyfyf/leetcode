@@ -15,6 +15,29 @@
 class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
-      
+        if (!head) return {};
+        vector<int> temp;
+        stack<int> mono_stk;
+        ListNode *curr = head;
+        while (curr){
+            temp.push_back(curr->val);
+            curr = curr->next;
+        }
+        int n = temp.size();
+        vector<int> ret(n);
+        // 从最右侧开始遍历
+        for (int i = n - 1; i >= 0; --i){
+            // 找到离i最近的大于他的数字
+            while (!mono_stk.empty() && temp[i] >= mono_stk.top()){
+                mono_stk.pop();
+            }
+            if (mono_stk.empty()) {
+                ret[i] = 0;
+            }else {
+                ret[i] = mono_stk.top();
+            }
+            mono_stk.push(temp[i]);
+        }
+        return ret;
     }
 };
